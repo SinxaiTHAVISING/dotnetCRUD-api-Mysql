@@ -24,6 +24,8 @@ namespace MyApiProject.Controllers
         }
 
         [HttpGet]
+        // ActionResult เป็นคลาสใน ASP.NET Core ที่ใช้ในการสร้างผลลัพธ์ที่จะส่งกลับให้กับ client หลังจากการดำเนินการบางอย่าง 
+        // เช่น การดึงข้อมูลจากฐานข้อมูล, การประมวลผลข้อมูล, หรือการจัดการกับคำขอ HTTP ต่าง ๆ ที่เข้ามาทาง API.
         public async Task<ActionResult<IEnumerable<Person>>> Get()
         {
             var persons = await _personRepository.GetAllPersons();
@@ -42,6 +44,7 @@ namespace MyApiProject.Controllers
         }
 
         [HttpPost]
+        // [FromBody] Person person: เป็นข้อมูลของบุคคลที่จะถูกส่งเข้ามาเพื่ออัปเดต ซึ่งจะถูกดึงจาก body ของคำขอ HTTP PUT.
         public async Task<ActionResult> Post([FromBody] Person person)
         {
             await _personRepository.AddPerson(person);
@@ -55,7 +58,7 @@ namespace MyApiProject.Controllers
             {
                 return BadRequest();
             }
-
+            // Is function UpdatePerson มาจากRepository
             await _personRepository.UpdatePerson(person);
             return NoContent();
         }

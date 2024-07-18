@@ -18,6 +18,7 @@ namespace MyApiProject.Repositories
         }
 
         // Task: หมายถึงเป็นการบ่งชี้ว่าเมธอดนี้เป็น asynchronous 
+        // IEnumerable<Person>: หมายถึงข้อมูลที่เป็นลิสต์ของอ็อบเจ็กต์ Person
         public async Task<IEnumerable<Person>> GetAllPersons()
         {
             using (IDbConnection db = new MySqlConnection(_connectionString))
